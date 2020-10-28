@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n\tlet url\r\n\tlet customString\r\n\tlet result = null\r\n\t\r\n\tasync function doPost () {\r\n\t\tconst res = await fetch('https://murmuring-retreat-87582.herokuapp.com/', {\r\n\t\t\tmethod: 'POST',\r\n\t\t\tmode: 'cors', // no-cors, *cors, same-origin\r\n    \t\tcache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached\r\n    \t\tcredentials: 'same-origin', // include, *same-origin, omit\r\n    \t\theaders: {\r\n      \t\t\t'Content-Type': 'application/json'\r\n      \t\t\t// 'Content-Type': 'application/x-www-form-urlencoded',\r\n    \t\t},\r\n    \t\tredirect: 'follow', // manual, *follow, error\r\n    \t\treferrerPolicy: 'no-referrer',\r\n\t\t\tbody: JSON.stringify({\r\n\t\t\t\turl: url,\r\n\t\t\t\tcustom_target: customString\r\n\t\t\t}),\r\n\t\t})\r\n\t\t\r\n\t\tconst json = await res.json()\r\n\t\t// result = JSON.stringify(json)\r\n\t\tresult = json\r\n\t}\r\n</script>\r\n\r\n\r\n<main>\r\n\t<h2>URL Shortener</h2>\r\n\t<input bind:value={url} placeholder=\"Enter URL here\" />\r\n\t<input bind:value={customString} placeholder=\"Custom string (optional)\"/>\r\n\t<button type=\"button\" on:click={doPost}>\r\n\t\tShorten\r\n\t</button>\r\n\t{#if result != null}\r\n\t\t<p>\r\n\t\t\tShortened URL:\r\n\t\t</p>\r\n\t\t<pre>\r\n\t\t{\"https://link.paramchauhan.com/\" + result['short']}\r\n\t\t</pre>\r\n\t{/if}\r\n</main>\r\n\r\n\r\n<style>\r\n\tmain {\r\n\t\ttext-align: center;\r\n\t\tpadding: 1em;\r\n\t\tmax-width: 240px;\r\n\t\tmargin: 0 auto;\r\n\t}\r\n\r\n\th2 {\r\n\t\tcolor: #ff3e00;\r\n\t\tfont-size: 3em;\r\n\t\tfont-weight: 100;\r\n\t}\r\n\r\n\t@media (min-width: 640px) {\r\n\t\tmain {\r\n\t\t\tmax-width: none;\r\n\t\t}\r\n\t}\r\n</style>"
+  ],
+  "names": [],
+  "mappings": "AAiDC,IAAI,eAAC,CAAC,AACL,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,GAAG,CACZ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AACf,CAAC,AAED,EAAE,eAAC,CAAC,AACH,KAAK,CAAE,OAAO,CACd,SAAS,CAAE,GAAG,CACd,WAAW,CAAE,GAAG,AACjB,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AAC1B,IAAI,eAAC,CAAC,AACL,SAAS,CAAE,IAAI,AAChB,CAAC,AACF,CAAC"
+}
